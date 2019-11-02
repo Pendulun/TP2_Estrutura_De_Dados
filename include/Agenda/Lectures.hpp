@@ -10,7 +10,7 @@ namespace Agenda{
 		void printOrderedPlanets();
 		Lectures();
 	private:
-		std::vector<Planet> visiting_planets; 
+		std::vector<Planet*> visiting_planets; 
 		void orderByTime();
 		void orderByName();
 		void printInterval();
