@@ -7,16 +7,17 @@
 namespace Agenda{
 	class Lectures{
 	public:
-		void addPlanet(std::string planet_name, int t,int position);
-		void printOrderedPlanets();
+		void addSinglePlanet(std::string planet_name, int t,int position);
+		void addPlanets();
+		void printOrderedPlanets(int maxTime);
 		Lectures(int numPlanets);
 		~Lectures();
 	private:
 		int numPlanets; 
 		Planet* visiting_planets[numPlanets];
 		void orderByTime();
-		void orderByName();
-		void printInterval();
+		void orderByName(int left_index,int right_index);
+		void printInterval(int left_index,int right_index);
 	};
 }
 
