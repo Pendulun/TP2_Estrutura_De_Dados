@@ -2,8 +2,9 @@
 
 namespace Agenda{
 
-	Lectures::Lectures(int numPlanets){
+	Lectures::Lectures(int numPlanets,int planetNameSize){
 		this->numPlanets = numPlanets;
+		this->planetNameSize=planetNameSize;
 	}
 
 	Lectures::~Lectures(int numPlanets){
@@ -53,12 +54,27 @@ namespace Agenda{
 	}
 
 	void Lectures::orderByTime(){
-		Ordering::MergeSort orderTime = new MergeSort();
+		Ordering::MergeSort orderTime = new Ordering::MergeSort::MergeSort();
 		orderTime.mergeSort(this->visiting_planets,0,this->numPlanets-1)
+		delete orderTime;
 	}
 
 	void Lectures::orderByName(int left_index,int right_index){
+		Ordering::RadixSort orderName = new Ordering::RadixSort::RadixSort();
+		Planet* nameSortedPlanets[right_index-left_index+1];
 
+		//Copies the original array interval to nameSorterPlanets
+		for(int planet=0;planet<right_index-left_index+1;planet++){
+			nameSortedPlanets[planet]=this->visiting_planets[left_index+planet];
+		}
+		//Sorts those Planets
+		orderName.radixSort(nameSortedPlanets,this->numPlanets,this->planetNameSize);
+
+		//Copies the sorted interval at nameSOrtedPlanets to the original array
+		for(int planet=0;planet<right_index-left_index+1;planet++){
+			this->visiting_planets[left_index+planet]=nameSortedPlanets[planet];
+		}
+		delete orderName;
 	}
 
 	void Lectures::printInterval(int left_index,int right_index,int month){
