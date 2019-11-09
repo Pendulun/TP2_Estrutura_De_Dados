@@ -4,7 +4,7 @@ namespace Agenda{
 
 	Lectures::Lectures(int numPlanets,int planetNameSize){
 		this->numPlanets = numPlanets;
-		this->planetNameSize=planetNameSize;
+		this->planetNameSize = planetNameSize;
 	}
 
 	Lectures::~Lectures(int numPlanets){
