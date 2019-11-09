@@ -3,14 +3,17 @@
 #include <vector>
 #include <string>
 #include "Planet.hpp"
+#include "MergeSort.hpp"
 namespace Agenda{
 	class Lectures{
 	public:
-		void addPlanet(std::string planet_name, int t);
+		void addPlanet(std::string planet_name, int t,int position);
 		void printOrderedPlanets();
-		Lectures();
+		Lectures(int numPlanets);
+		~Lectures();
 	private:
-		std::vector<Planet*> visiting_planets; 
+		int numPlanets; 
+		Planet* visiting_planets[numPlanets];
 		void orderByTime();
 		void orderByName();
 		void printInterval();
