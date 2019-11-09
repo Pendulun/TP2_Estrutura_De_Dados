@@ -5,9 +5,9 @@
 namespace Ordering{
 	class MergeSort{
 	public:
-		void mergeSort(std::vector<Planet*> visiting_planets, int left_index, int right_index);
+		void mergeSort(Planet *visiting_planets, int left_index, int right_index);
 	private:
-		void merge(std::vector<Planet*> visiting_planets, int left_index, int middle_index, int right_index);
+		void merge(Planet *visiting_planets, int left_index, int middle_index, int right_index);
 	};
 }
 

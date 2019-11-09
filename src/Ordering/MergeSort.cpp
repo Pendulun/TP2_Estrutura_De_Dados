@@ -2,21 +2,19 @@
 
 namespace Ordering{
 
-	void MergeSort::mergeSort(std::vector<Planet*> &visiting_planets, int left_index, int right_index){
+	void MergeSort::mergeSort(Planet *visiting_planets, int left_index, int right_index){
 		int middle_index = (left_index+right_index)/2;
 		if(left_index<right_index){
-			MergeSort::mergeSort(std::vector<Planet*> &visiting_planets, left_index, middle_index);
-			MergeSort::mergeSort(std::vector<Planet*> &visiting_planets, middle_index+1,right_index);
+			MergeSort::mergeSort(visiting_planets, left_index, middle_index);
+			MergeSort::mergeSort(visiting_planets, middle_index+1,right_index);
 			MertgeSort::merge(visiting_planets,left_index,middle_index,right_index);
 		}
 	}
 
-	void MergeSort::merge(std::vector<Planet*> visiting_planets, int left_index, int middle_index,
+	void MergeSort::merge(Planet *visiting_planets, int left_index, int middle_index,
 	 int right_index){
 		//Auxiliar vector used to order the planets 
-		std::vector<Planet*> ordered_vector;
-		//Grow the ordered_vector size to the minimum needed
-		ordered_vector.resize(right_index-left_index+1); 
+		Planet* ordered_vector[right_index - left_index + 1];
 		int planet_i,planet_j,planet_k;
 		//Copies the left half of visiting_planets sequencially beggining at 0 index to the
 		//ordered_vector
@@ -24,7 +22,7 @@ namespace Ordering{
 			ordered_vector[planet_i]=visiting_planets[planet_i];
 		}
 		//Copies the right half of visiting_planets sequencially beggining at the last index to the
-		//ordered_vector decreasing the index
+		//ordered_vector as well decreasing the index
 		for(planet_j=middle_index+1;planet_j<=right_index;planet_j++){
 			ordered_vector[right_index-planet_j+middle_index+1]=visiting_planets[planet_j];
 		}
