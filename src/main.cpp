@@ -2,8 +2,8 @@
 #include <string>
 int main() {
   int T,P,x;
-  Lectures lectures_agenda = new Lectures();
   std::cin>>T>>P>>x;
+  Lectures lectures_agenda = new Lectures(P);
   for (int contador = 0; contador<P; contador++){
     int t;
     std::string planet_name;
