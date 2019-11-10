@@ -9,6 +9,7 @@ namespace Agenda{
 			void setVisitTime(int new_visit_time);
 			int getVisitTime();
 			Planet(std::string new_name, int new_visit_time);
+			Planet();
 		private:
 			std::string name;
 			int visit_time;
