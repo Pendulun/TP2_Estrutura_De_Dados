@@ -6,6 +6,8 @@ namespace Agenda{
 		this->name = new_name;
 		this->visit_time = new_visit_time;
 	}
+
+	Planet::Planet(){}
 	
 	int Planet::getVisitTime(){
 		return this->visit_time;
