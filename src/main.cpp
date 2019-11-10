@@ -4,10 +4,10 @@
 int main() {
   int T,P,x;
   while(scanf("%d %d %d", &T, &P, &x) != EOF){
-    Lectures lectures_agenda = new Lectures(P,x);
-    lectures_agenda.addPlanets();
-    lectures_agenda.printOrderedPlanets(T);
+    Agenda::Lectures* lectures_agenda = new Agenda::Lectures(P,x);
+    lectures_agenda->addPlanets();
+    lectures_agenda->printOrderedPlanets(T);
+    delete lectures_agenda;
   }
-  delete lectures_agenda;
   return 0;
 }
