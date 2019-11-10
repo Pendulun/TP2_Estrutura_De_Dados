@@ -5,12 +5,13 @@ namespace Agenda{
 	Lectures::Lectures(int numPlanets,int planetNameSize){
 		this->numPlanets = numPlanets;
 		this->planetNameSize = planetNameSize;
+		this->visiting_planets = new Agenda::Planet[numPlanets];
 	}
 
-	Lectures::~Lectures(int numPlanets){
-		for(int planet=0;planet<numPlanets;planet++){
-			delete this->visiting_planets[planet];
-		}
+	Lectures::~Lectures(){
+		//for(int planet=0;planet<numPlanets;planet++){
+		//	delete this->visiting_planets[planet];
+		//}
 		delete[] this->visiting_planets;
 	}
 
@@ -19,19 +20,18 @@ namespace Agenda{
 		this->visiting_planets[position] = new_planet;
 	}
 
-	void Lectures::addPlanets(std::string planet_name, int t, int position){
+	void Lectures::addPlanets(){
 		for (int planetCount = 0; planetCount<this->numPlanets; planetCount++){
     		int t;
     		std::string planet_name;
     		std::cin>>t>>planet_name;
-    		this->addSinglePlanet(planet_name,t,planet);
+    		this->addSinglePlanet(planet_name,t,planetCount);
   		}
 	}
 
 	void Lectures::printOrderedPlanets(int maxTime){
 		Lectures::orderByTime();
 		int left_index=0;
-		int right_index=0;
 		int timeSum=0;
 		int month=1;
 		//Sum the visiting time of each planet until maxTime be excceeded
@@ -54,21 +54,21 @@ namespace Agenda{
 	}
 
 	void Lectures::orderByTime(){
-		Ordering::MergeSort orderTime = new Ordering::MergeSort::MergeSort();
-		orderTime.mergeSort(this->visiting_planets,0,this->numPlanets-1)
+		Ordering::MergeSort *orderTime = new Ordering::MergeSort();
+		orderTime->mergeSort(this->visiting_planets,0,this->numPlanets-1);
 		delete orderTime;
 	}
 
 	void Lectures::orderByName(int left_index,int right_index){
-		Ordering::RadixSort orderName = new Ordering::RadixSort::RadixSort();
+		Ordering::RadixSort *orderName = new Ordering::RadixSort();
 		Planet* nameSortedPlanets[right_index-left_index+1];
 
 		//Copies the original array interval to nameSorterPlanets
 		for(int planet=0;planet<right_index-left_index+1;planet++){
-			nameSortedPlanets[planet]=this->visiting_planets[left_index+planet];
+			*nameSortedPlanets[planet]=*this->visiting_planets[left_index+planet];
 		}
 		//Sorts those Planets
-		orderName.radixSort(nameSortedPlanets,this->numPlanets,this->planetNameSize);
+		orderName->radixSort(&nameSortedPlanets,this->numPlanets,this->planetNameSize);
 
 		//Copies the sorted interval at nameSOrtedPlanets to the original array
 		for(int planet=0;planet<right_index-left_index+1;planet++){
@@ -79,7 +79,7 @@ namespace Agenda{
 
 	void Lectures::printInterval(int left_index,int right_index,int month){
 		for(int planet=left_index;planet<=right_index;planet++){
-			std::cout<<month+" "<<this->visiting_planets[planet].getName()+" "<<this->visiting_planets[planet].getVisitingTime()<<std::endl;
+			std::cout<<month+" "<<this->visiting_planets[planet].getName()+" "<<this->visiting_planets[planet].getVisitTime()<<std::endl;
 		}
 	}
 
