@@ -1,10 +1,10 @@
 #ifndef LECTURES_H
 #define LECTURES_H
-#include <vector>
 #include <string>
+#include <iostream>
 #include "Planet.hpp"
-#include "MergeSort.hpp"
 #include "RadixSort.hpp"
+#include "MergeSort.hpp"
 namespace Agenda{
 	class Lectures{
 	public:
@@ -14,12 +14,12 @@ namespace Agenda{
 		Lectures(int numPlanets,int planetNameSize);
 		~Lectures();
 	private:
-		int numPlanets; 
-		int planetNameSize;
-		Planet* visiting_planets[numPlanets];
+		int numPlanets=0; 
+		int planetNameSize=0;
+		Planet* visiting_planets=nullptr;
 		void orderByTime();
 		void orderByName(int left_index,int right_index);
-		void printInterval(int left_index,int right_index);
+		void printInterval(int left_index,int right_index,int month);
 	};
 }
 
